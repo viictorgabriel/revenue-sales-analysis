@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="445" viewBox="0 0 900 445" role="img" aria-label="Cinco maiores clientes fictícios">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<g font-family="Arial,sans-serif" fill="#16324a">
+<text x="24" y="34" font-size="22" font-weight="bold">Cinco maiores clientes fictícios</text>
+<text x="24" y="59" font-size="13">Dados inteiramente fictícios • Valores nominais em reais</text>
+<text x="24" y="95" font-size="15">CLIENTE-003</text>
+<rect x="230" y="78" width="470.00" height="23" fill="#2764bb"/>
+<text x="870" y="95" text-anchor="end" font-size="15">R$ 1.068.000,00</text>
+<text x="24" y="161" font-size="15">CLIENTE-004</text>
+<rect x="230" y="144" width="388.15" height="23" fill="#2764bb"/>
+<text x="870" y="161" text-anchor="end" font-size="15">R$ 882.000,00</text>
+<text x="24" y="227" font-size="15">CLIENTE-002</text>
+<rect x="230" y="210" width="316.85" height="23" fill="#2764bb"/>
+<text x="870" y="227" text-anchor="end" font-size="15">R$ 720.000,00</text>
+<text x="24" y="293" font-size="15">CLIENTE-001</text>
+<rect x="230" y="276" width="293.09" height="23" fill="#2764bb"/>
+<text x="870" y="293" text-anchor="end" font-size="15">R$ 666.000,00</text>
+<text x="24" y="359" font-size="15">CLIENTE-005</text>
+<rect x="230" y="342" width="245.56" height="23" fill="#2764bb"/>
+<text x="870" y="359" text-anchor="end" font-size="15">R$ 558.000,00</text>
+</g></svg>

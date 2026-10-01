@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="247" viewBox="0 0 900 247" role="img" aria-label="Vendas de janeiro a agosto">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<g font-family="Arial,sans-serif" fill="#16324a">
+<text x="24" y="34" font-size="22" font-weight="bold">Vendas de janeiro a agosto</text>
+<text x="24" y="59" font-size="13">Dados inteiramente fictícios • Valores nominais em reais</text>
+<text x="24" y="95" font-size="15">2025</text>
+<rect x="230" y="78" width="470.00" height="23" fill="#2764bb"/>
+<text x="870" y="95" text-anchor="end" font-size="15">R$ 3.678.000,00</text>
+<text x="24" y="161" font-size="15">2026</text>
+<rect x="230" y="144" width="373.39" height="23" fill="#2764bb"/>
+<text x="870" y="161" text-anchor="end" font-size="15">R$ 2.922.000,00</text>
+</g></svg>
