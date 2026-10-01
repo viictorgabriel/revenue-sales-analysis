@@ -68,8 +68,3 @@ Valor vendido não equivale automaticamente a caixa recebido ou receita contábi
 
 Os padrões de vendas são artificiais. Esta base não valida demanda de mercado nem desempenho de uma empresa. Só existem oportunidades ganhas: não é possível estimar conversão, churn ou forecast confiável. As recomendações são propostas analíticas, não ações executadas.
 
-## Autoria e transparência
-
-Projeto desenvolvido com assistência de IA na estrutura, código e documentação. O contexto comercial e as regras foram discutidos com Victor Souza. O roteiro de estudo orienta a revisão e reprodução pelo autor; o repositório não declara domínio técnico ou resultados de negócio ainda não demonstrados.
-
-Comece pelo [roteiro de estudo](docs/COMECE_AQUI.md) e pelo [dicionário dos dados](docs/dicionario.md).
