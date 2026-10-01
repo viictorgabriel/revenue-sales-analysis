@@ -65,11 +65,11 @@ def main():
     db.executemany('INSERT INTO oportunidades VALUES (?,?,?,?,?,?,?)',rows)
     queries=(ROOT/'sql/analise.sql').read_text(encoding='utf-8').split(';')
     results=[]
-    for name,query in zip(['por_area','por_ano','top_clientes'],[q for q in queries if q.strip()]):
+    for name,query in zip(['por_area','por_ano','top_clientes','comparativo_clientes'],[q for q in queries if q.strip()]):
         cur=db.execute(query); values=cur.fetchall();results.append(values)
         with (out/f'{name}.csv').open('w',encoding='utf-8',newline='') as f:
             writer=csv.writer(f);writer.writerow([c[0] for c in cur.description]);writer.writerows(values)
-    areas, years, clients=results
+    areas, years, clients, comparison=results
     cents=sum(r[-1] for r in rows if r[4]!='Parcerias de TI')
     assert cents==db.execute("SELECT SUM(valor_centavos) FROM oportunidades WHERE area <> 'Parcerias de TI'").fetchone()[0]
     n=sum(1 for r in rows if r[4]!='Parcerias de TI')
@@ -88,9 +88,25 @@ def main():
            f'- Participação dos cinco maiores clientes: {br(share)}%.','',
            '| Área | Oportunidades | Vendas (R$) | Ticket (R$) |','|---|---:|---:|---:|']
     lines.extend(f'| {a} | {q} | {br(v)} | {br(t)} |' for a,q,v,t in areas)
+    both=[r for r in comparison if r[6]=='Ambas']
+    both_total=sum(r[5] for r in both)
+    lines+=['', '## Clientes com oportunidades em Copilot e Segurança', '',
+            'Cruzamento por cliente_id em todo o período disponível. Cada cliente é contado uma vez no perfil. Não há exigência de ordem entre as contratações. PAL/CPOR não entram neste comparativo.', '',
+            '| Perfil | Clientes | Participação nos clientes |', '|---|---:|---:|']
+    for profile in ('Ambas','Somente Copilot','Somente Segurança'):
+        count=sum(r[6]==profile for r in comparison)
+        pct=count/len(comparison)*100 if comparison else 0
+        lines.append(f'| {profile} | {count} | {br(pct)}% |')
+    both_share=both_total/total*100 if total else 0
+    lines+=['', f'Os {len(both)} clientes com ambas as frentes somam R$ {br(both_total)}, equivalentes a {br(both_share)}% das vendas de soluções.', '',
+            '| Cliente | Oportunidades Copilot | Oportunidades Segurança | Vendas Copilot (R$) | Vendas Segurança (R$) | Total (R$) |',
+            '|---|---:|---:|---:|---:|---:|']
+    lines.extend(f'| {c} | {nc} | {ns} | {br(vc)} | {br(vs)} | {br(vt)} |' for c,nc,ns,vc,vs,vt,_ in both)
+    lines+=['', '[Comparativo completo dos clientes](comparativo_clientes.csv)', '',
+            'A presença conjunta descreve a carteira, mas não demonstra que uma venda causou outra. Clientes com uma única frente podem ser avaliados quanto a necessidades complementares em qualquer direção. A ausência de contratação não comprova demanda.']
     lines+=['','![Vendas por área](vendas_por_area.svg)','','![Comparação anual](vendas_por_ano.svg)','','![Clientes](top_clientes.svg)','',
             '## Interpretação e ações propostas','',
-            'A composição das vendas e o ticket ajudam a distinguir volume de oportunidades de valor comercial. A concentração orienta quais contas merecem planos de relacionamento. Investigar necessidades complementares de Segurança nos compradores de IA é uma hipótese de expansão, não uma venda prevista.','',
+            'A composição das vendas e o ticket ajudam a distinguir volume de oportunidades de valor comercial. A concentração orienta quais contas merecem planos de relacionamento. Investigar necessidades complementares de Segurança ou Copilot é uma hipótese de expansão, sem ordem obrigatória entre as soluções e sem venda prevista.','',
             'Comparações usam janeiro a agosto em ambos os anos. Variação temporal desta simulação é consequência do gerador aleatório e não evidência sobre o mercado. Não há perdas, leads, contratos recorrentes ou pipeline aberto: não calculamos conversão, churn, MRR, ARR ou forecast.','',
             'As recomendações não foram implementadas e não há impacto de negócio medido.']
     (out/'resultados.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
