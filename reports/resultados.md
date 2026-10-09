@@ -48,10 +48,25 @@ A presença conjunta descreve a carteira, mas não demonstra que uma venda causo
 
 ![Clientes](top_clientes.svg)
 
-## Interpretação e ações propostas
+## Consultas SQL executadas no VS Code
 
-A composição das vendas e o ticket ajudam a distinguir volume de oportunidades de valor comercial. A concentração orienta quais contas merecem planos de relacionamento. Investigar necessidades complementares de Segurança ou Copilot é uma hipótese de expansão, sem ordem obrigatória entre as soluções e sem venda prevista.
+As consultas foram executadas em SQLite, e os resultados foram
+conferidos com os indicadores apresentados neste relatório.
 
-Comparações usam janeiro a agosto em ambos os anos. Variação temporal desta simulação é consequência do gerador aleatório e não evidência sobre o mercado. Não há perdas, leads, contratos recorrentes ou pipeline aberto: não calculamos conversão, churn, MRR, ARR ou forecast.
+| Consulta | Objetivo |
+|---|---|
+| [Receita por área](../sql/receita_por_area.sql) | Comparar quantidade de oportunidades, receita e ticket médio de Copilot e Segurança. |
+| [Principais clientes](../sql/top_clientes.sql) | Identificar os cinco clientes com maior receita comercial. |
+| [Clientes nas duas áreas](../sql/clientes_ambas_areas.sql) | Identificar clientes com oportunidades tanto em Copilot quanto em Segurança. |
+| [Perfis de clientes](../sql/perfil_clientes.sql) | Contar clientes com ambas as áreas, somente Copilot ou somente Segurança. |
 
-As recomendações não foram implementadas e não há impacto de negócio medido.
+### Conceitos praticados
+
+- Filtragem com WHERE e IN.
+- Agrupamento com GROUP BY.
+- Agregações com COUNT, SUM e AVG.
+- Arredondamento com ROUND.
+- Ordenação e seleção dos maiores valores com ORDER BY e LIMIT.
+- Contagem condicional com CASE.
+- Filtragem de grupos com HAVING e COUNT DISTINCT.
+- Organização da consulta em etapas com WITH.
