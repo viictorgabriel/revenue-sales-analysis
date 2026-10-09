@@ -64,7 +64,10 @@ Valor vendido não equivale automaticamente a caixa recebido ou receita contábi
 | `docs/` | Dicionário e roteiro de estudo/publicação |
 | `tests/` | Verificação de duplicatas, valores e regras de classificação |
 
-## Limitações
+## Dashboard em Power BI
 
-Os padrões de vendas são artificiais. Esta base não valida demanda de mercado nem desempenho de uma empresa. Só existem oportunidades ganhas: não é possível estimar conversão, churn ou forecast confiável. As recomendações são propostas analíticas, não ações executadas.
+Análise de receita com dados fictícios: receita comercial, oportunidades, ticket médio, participação por área e os cinco maiores clientes.
 
+![Dashboard de receita — IA e Segurança](reports/dashboard_receita.png)
+
+[Baixar o relatório do Power BI](reports/Receita.pbix)
