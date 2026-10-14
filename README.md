@@ -1,6 +1,6 @@
 # Análise comercial de soluções de IA e Segurança
 
-![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white) ![SQL](https://img.shields.io/badge/SQL-SQLite-003B57?logo=sqlite&logoColor=white) ![Power BI](https://img.shields.io/badge/Power%20BI-dashboard-F2C811?logo=powerbi&logoColor=black)
+[![Testes](https://github.com/viictorgabriel/revenue-sales-analysis/actions/workflows/testes.yml/badge.svg)](https://github.com/viictorgabriel/revenue-sales-analysis/actions/workflows/testes.yml) ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white) ![SQL](https://img.shields.io/badge/SQL-SQLite-003B57?logo=sqlite&logoColor=white) ![Power BI](https://img.shields.io/badge/Power%20BI-dashboard-F2C811?logo=powerbi&logoColor=black)
 
 Projeto de portfólio de Victor Souza: preparação de dados, consultas SQL e análise exploratória de oportunidades ganhas.
 
