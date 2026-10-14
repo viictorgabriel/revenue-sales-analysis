@@ -1,3 +1,4 @@
+-- Clientes com oportunidades tanto em Copilot quanto em Segurança.
 SELECT
     cliente_id,
     SUM(CASE WHEN area = 'IA/Copilot'

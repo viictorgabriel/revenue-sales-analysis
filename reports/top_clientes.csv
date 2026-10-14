@@ -1,4 +1,4 @@
-cliente_id,oportunidades,vendas_reais
+cliente_id,quantidade,receita_reais
 CLIENTE-003,16,1068000.0
 CLIENTE-004,15,882000.0
 CLIENTE-002,11,720000.0

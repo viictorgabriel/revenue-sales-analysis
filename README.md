@@ -59,7 +59,7 @@ Valor vendido não equivale automaticamente a caixa recebido ou receita contábi
 | `data/` | Somente dados sintéticos |
 | `src/gerar_dados.py` | Construção da simulação |
 | `src/analisar.py` | Tratamento, SQL e geração de resultados |
-| `sql/analise.sql` | Consultas comentadas |
+| `sql/` | Uma consulta comentada por pergunta, executada pelo `analisar.py` |
 | `reports/` | Resultados e gráficos reproduzíveis |
 | `tests/` | Verificação de duplicatas, valores e regras de classificação |
 

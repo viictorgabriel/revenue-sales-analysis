@@ -5,5 +5,5 @@ SELECT
 FROM oportunidades
 WHERE area <> 'Parcerias de TI'
 GROUP BY cliente_id
-ORDER BY receita_reais DESC
+ORDER BY receita_reais DESC, cliente_id
 LIMIT 5;
