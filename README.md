@@ -1,8 +1,23 @@
 # Análise comercial de soluções de IA e Segurança
 
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white) ![SQL](https://img.shields.io/badge/SQL-SQLite-003B57?logo=sqlite&logoColor=white) ![Power BI](https://img.shields.io/badge/Power%20BI-dashboard-F2C811?logo=powerbi&logoColor=black)
+
 Projeto de portfólio de Victor Souza: preparação de dados, consultas SQL e análise exploratória de oportunidades ganhas.
 
 **Estudo simulado com dados inteiramente fictícios.** A pergunta de negócio foi inspirada em um contexto de vendas de tecnologia. Este repositório não contém exportações do CRM, nomes de clientes, identificadores ou valores da empresa. Os resultados não devem ser apresentados como conquistas profissionais reais.
+
+## Resumo executivo
+
+Analisei 120 registros de vendas ganhas de soluções de IA (Copilot) e Segurança para descobrir onde o valor das vendas se concentra. Das 98 oportunidades comerciais, que somam **R$ 6,6 milhões** com ticket médio de R$ 67,3 mil, os principais achados são:
+
+- **Clientes com as duas frentes concentram o valor.** 44% dos clientes têm oportunidades em Copilot e em Segurança, e esse grupo soma **73% das vendas**. É uma descrição da carteira, não prova de que uma venda levou à outra.
+- **IA puxa o valor.** Copilot responde por **77% das vendas**, com ticket médio de R$ 87,7 mil, 2,3 vezes o de Segurança (R$ 37,8 mil).
+- **A carteira é concentrada.** Os cinco maiores clientes somam **59% das vendas**, o que pede planos de relacionamento dedicados para essas contas.
+- **O período mais recente vendeu menos.** De janeiro a agosto, as vendas caíram **21%** de 2025 para 2026 (R$ 3,68 mi para R$ 2,92 mi).
+
+![Dashboard de receita — IA e Segurança](reports/dashboard_receita.png)
+
+**Ferramentas:** Python (somente biblioteca padrão), SQL em SQLite, Power BI e testes automatizados de qualidade de dados. Detalhes no [relatório de conclusões](reports/resultados.md).
 
 ## Pergunta de negócio
 
@@ -65,8 +80,6 @@ Valor vendido não equivale automaticamente a caixa recebido ou receita contábi
 
 ## Dashboard em Power BI
 
-Análise de receita com dados fictícios: receita comercial, oportunidades, ticket médio, participação por área e os cinco maiores clientes.
-
-![Dashboard de receita — IA e Segurança](reports/dashboard_receita.png)
+Análise de receita com dados fictícios: receita comercial, oportunidades, ticket médio, participação por área e os cinco maiores clientes. O print do painel está no [resumo executivo](#resumo-executivo).
 
 [Baixar o relatório do Power BI](reports/Receita.pbix)
