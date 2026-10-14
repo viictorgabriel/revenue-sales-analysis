@@ -1,3 +1,4 @@
+-- Quantidade de clientes por perfil: ambas as frentes, somente Copilot ou somente Segurança.
 WITH por_cliente AS (
     SELECT
         cliente_id,

@@ -48,17 +48,26 @@ A presença conjunta descreve a carteira, mas não demonstra que uma venda causo
 
 ![Clientes](top_clientes.svg)
 
-## Consultas SQL executadas no VS Code
+## Interpretação e ações propostas
 
-As consultas foram executadas em SQLite, e os resultados foram
-conferidos com os indicadores apresentados neste relatório.
+A composição das vendas e o ticket ajudam a distinguir volume de oportunidades de valor comercial. A concentração orienta quais contas merecem planos de relacionamento. Investigar necessidades complementares de Segurança ou Copilot é uma hipótese de expansão, sem ordem obrigatória entre as soluções e sem venda prevista.
 
-| Consulta | Objetivo |
-|---|---|
-| [Receita por área](../sql/receita_por_area.sql) | Comparar quantidade de oportunidades, receita e ticket médio de Copilot e Segurança. |
-| [Principais clientes](../sql/top_clientes.sql) | Identificar os cinco clientes com maior receita comercial. |
-| [Clientes nas duas áreas](../sql/clientes_ambas_areas.sql) | Identificar clientes com oportunidades tanto em Copilot quanto em Segurança. |
-| [Perfis de clientes](../sql/perfil_clientes.sql) | Contar clientes com ambas as áreas, somente Copilot ou somente Segurança. |
+Comparações usam janeiro a agosto em ambos os anos. Variação temporal desta simulação é consequência do gerador aleatório e não evidência sobre o mercado. Não há perdas, leads, contratos recorrentes ou pipeline aberto: não calculamos conversão, churn, MRR, ARR ou forecast.
+
+As recomendações não foram implementadas e não há impacto de negócio medido.
+
+## Consultas SQL
+
+Cada consulta abaixo é executada pelo script em SQLite e gera o CSV indicado. Os totais são reconciliados com a soma independente em Python.
+
+| Consulta | Objetivo | Resultado |
+|---|---|---|
+| [Vendas por área](../sql/receita_por_area.sql) | Comparar quantidade de oportunidades, vendas e ticket médio de Copilot e Segurança. | [por_area.csv](por_area.csv) |
+| [Vendas por ano](../sql/vendas_por_ano.sql) | Comparar janeiro a agosto dos dois anos da simulação. | [por_ano.csv](por_ano.csv) |
+| [Principais clientes](../sql/top_clientes.sql) | Identificar os cinco clientes com maior valor vendido. | [top_clientes.csv](top_clientes.csv) |
+| [Comparativo por cliente](../sql/comparativo_clientes.sql) | Classificar cada cliente por presença em Copilot, Segurança ou ambas. | [comparativo_clientes.csv](comparativo_clientes.csv) |
+| [Clientes nas duas áreas](../sql/clientes_ambas_areas.sql) | Identificar clientes com oportunidades tanto em Copilot quanto em Segurança. | [clientes_ambas_areas.csv](clientes_ambas_areas.csv) |
+| [Perfis de clientes](../sql/perfil_clientes.sql) | Contar clientes com ambas as áreas, somente Copilot ou somente Segurança. | [perfil_clientes.csv](perfil_clientes.csv) |
 
 ### Conceitos praticados
 

@@ -12,6 +12,16 @@ MAPA = {'COPILOT': 'IA/Copilot', 'COPIOT': 'IA/Copilot',
         'DATA SECURITY': 'Segurança', 'THREAT PROTECTION': 'Segurança',
         'CPOR': 'Parcerias de TI', 'PAL': 'Parcerias de TI'}
 
+# Arquivo SQL, nome do CSV gerado, título e objetivo no relatório.
+CONSULTAS = [
+    ('receita_por_area.sql', 'por_area', 'Vendas por área', 'Comparar quantidade de oportunidades, vendas e ticket médio de Copilot e Segurança.'),
+    ('vendas_por_ano.sql', 'por_ano', 'Vendas por ano', 'Comparar janeiro a agosto dos dois anos da simulação.'),
+    ('top_clientes.sql', 'top_clientes', 'Principais clientes', 'Identificar os cinco clientes com maior valor vendido.'),
+    ('comparativo_clientes.sql', 'comparativo_clientes', 'Comparativo por cliente', 'Classificar cada cliente por presença em Copilot, Segurança ou ambas.'),
+    ('clientes_ambas_areas.sql', 'clientes_ambas_areas', 'Clientes nas duas áreas', 'Identificar clientes com oportunidades tanto em Copilot quanto em Segurança.'),
+    ('perfil_clientes.sql', 'perfil_clientes', 'Perfis de clientes', 'Contar clientes com ambas as áreas, somente Copilot ou somente Segurança.'),
+]
+
 def br(value):
     return f'{value:,.2f}'.replace(',', 'X').replace('.', ',').replace('X', '.')
 
@@ -63,13 +73,16 @@ def main():
     db=sqlite3.connect(':memory:')
     db.execute('CREATE TABLE oportunidades (id TEXT PRIMARY KEY, cliente_id TEXT, fechamento TEXT, solucao TEXT, area TEXT, origem TEXT, valor_centavos INTEGER)')
     db.executemany('INSERT INTO oportunidades VALUES (?,?,?,?,?,?,?)',rows)
-    queries=(ROOT/'sql/analise.sql').read_text(encoding='utf-8').split(';')
     results=[]
-    for name,query in zip(['por_area','por_ano','top_clientes','comparativo_clientes'],[q for q in queries if q.strip()]):
-        cur=db.execute(query); values=cur.fetchall();results.append(values)
+    for sql_file,name,_,_ in CONSULTAS:
+        # Cada arquivo em sql/ tem uma única consulta; é a mesma que o relatório linka.
+        cur=db.execute((ROOT/'sql'/sql_file).read_text(encoding='utf-8')); values=cur.fetchall();results.append(values)
         with (out/f'{name}.csv').open('w',encoding='utf-8',newline='') as f:
             writer=csv.writer(f);writer.writerow([c[0] for c in cur.description]);writer.writerows(values)
-    areas, years, clients, comparison=results
+    areas, years, clients, comparison, both_ids, profiles=results
+    # As consultas de apoio precisam concordar com o comparativo por cliente.
+    assert sorted(r[0] for r in both_ids)==sorted(r[0] for r in comparison if r[6]=='Ambas')
+    assert dict(profiles)=={p:sum(r[6]==p for r in comparison) for p in dict(profiles)}
     cents=sum(r[-1] for r in rows if r[4]!='Parcerias de TI')
     assert cents==db.execute("SELECT SUM(valor_centavos) FROM oportunidades WHERE area <> 'Parcerias de TI'").fetchone()[0]
     n=sum(1 for r in rows if r[4]!='Parcerias de TI')
@@ -108,7 +121,16 @@ def main():
             '## Interpretação e ações propostas','',
             'A composição das vendas e o ticket ajudam a distinguir volume de oportunidades de valor comercial. A concentração orienta quais contas merecem planos de relacionamento. Investigar necessidades complementares de Segurança ou Copilot é uma hipótese de expansão, sem ordem obrigatória entre as soluções e sem venda prevista.','',
             'Comparações usam janeiro a agosto em ambos os anos. Variação temporal desta simulação é consequência do gerador aleatório e não evidência sobre o mercado. Não há perdas, leads, contratos recorrentes ou pipeline aberto: não calculamos conversão, churn, MRR, ARR ou forecast.','',
-            'As recomendações não foram implementadas e não há impacto de negócio medido.']
+            'As recomendações não foram implementadas e não há impacto de negócio medido.','',
+            '## Consultas SQL','',
+            'Cada consulta abaixo é executada pelo script em SQLite e gera o CSV indicado. Os totais são reconciliados com a soma independente em Python.','',
+            '| Consulta | Objetivo | Resultado |','|---|---|---|']
+    lines.extend(f'| [{title}](../sql/{sql_file}) | {goal} | [{name}.csv]({name}.csv) |' for sql_file,name,title,goal in CONSULTAS)
+    lines+=['','### Conceitos praticados','',
+            '- Filtragem com WHERE e IN.','- Agrupamento com GROUP BY.','- Agregações com COUNT, SUM e AVG.',
+            '- Arredondamento com ROUND.','- Ordenação e seleção dos maiores valores com ORDER BY e LIMIT.',
+            '- Contagem condicional com CASE.','- Filtragem de grupos com HAVING e COUNT DISTINCT.',
+            '- Organização da consulta em etapas com WITH.']
     (out/'resultados.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
     print(f'Concluído: {len(rows)} registros; R$ {br(total)} em vendas fictícias.')
     db.close()
