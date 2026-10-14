@@ -4,6 +4,10 @@ Projeto de portfólio de Victor Souza: preparação de dados, consultas SQL e an
 
 **Estudo simulado com dados inteiramente fictícios.** A pergunta de negócio foi inspirada em um contexto de vendas de tecnologia. Este repositório não contém exportações do CRM, nomes de clientes, identificadores ou valores da empresa. Os resultados não devem ser apresentados como conquistas profissionais reais.
 
+Clientes com Copilot e Segurança são 44% da carteira e somam 73% das vendas.
+Copilot é 77% das vendas, com ticket 2,3 vezes maior que o de Segurança.
+Os 5 maiores clientes concentram 59% das vendas.
+
 ## Pergunta de negócio
 
 Quais soluções e clientes concentram o valor das vendas ganhas e como esse valor se distribui em períodos comparáveis?
